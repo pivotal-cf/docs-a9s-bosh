@@ -1,0 +1,190 @@
+---
+title: Installing and Configuring a9s BOSH for PCF
+owner: Partners
+---
+
+This topic describes how to install and configure a9s BOSH for PCF.
+
+##<a id='prerequisites'></a> Prerequisites
+
+Please ensure that the following required tile has been successfully installed:
+
+* a9s Consul DNS for PCF (>= 0.9.0)
+
+
+##<a id='install'></a> Install a9s BOSH for PCF
+
+1. Download the product file from the Pivotal Network.
+
+2. Navigate to the Ops Manager Installation Dashboard and click **Import a Product**
+to upload the product file.
+
+3. Click **Add** next to the uploaded a9s BOSH for PCF tile in the Ops Manager
+**Available Products** view to add it to your staging area.
+
+4. Click the newly added tile to review configurable Setting.
+
+5. Click **Apply Changes** to deploy the service.
+
+
+##<a id='configure'></a> Configure a9s BOSH for PCF
+
+Once you have installed the a9s BOSH for PCF, you will have to configure the a9s BOSH's <a href="https://bosh.io/docs/bosh-components.html#director" target="_blank">BOSH Director</a> enabling access to your infrastructure.
+
+a9s BOSH configuration values are split in two categories:
+
+1. **<a href="https://bosh.io/docs/bosh-components.html#cpi" target="_blank">BOSH Director CPI</a>**.
+These fields are **specific to your infrastructure (IaaS)** which means that there might be different attributes to describe OpenStack, AWS or vSphere.
+
+2. **<a href="https://bosh.io/docs/cloud-config.html" target="_blank">Cloud-Config</a>**.
+Cloud-config fields share the same structure across all infrastructures. So the same attributes are required. However, the value structures, e.g. JSON configuration strings, might differ. In order to facilitate the configuration, examplary values are provided so you can derive the correct structure and adapt values for your infrastructure. Currently examples for AWS and vSphere exist. Please <a href="mailto:svc.support@anynines.com">contact the anynines support</a> in case your infrastructure type is missing.
+
+The form is split in two parts corresponding those categories.
+In the first part,
+you will first need to specify which IaaS you are using between *AWS*,
+*OpenStack* and *vSphere* and then fill the corresponding CPI fields.
+
+The following illustrations show the PCF OpsManager configuration UI. Find detailed infrastructure specific descriptions below.
+
+<a href="../images/iaas-data.png" target="_blank">
+  <img src="../images/iaas-data.png">
+</a>
+
+
+The second part is comprised of the Cloud-Config fields.
+
+
+<a href="../images/cloud-config.png" target="_blank">
+  <img src="../images/cloud-config.png">
+</a>
+
+According to the illustrations above, the following sections describe infrastructure specific settings. Please <a href="mailto:svc.support@anynines.com">contact the anynines support</a> in case your infrastructure type is missing.
+
+###<a id='aws-config'></a>AWS specific Settings
+
+The following exemplary settings demontrate the configuration of a9s BOSH for AWS.
+
+Please refer to the official BOSH documentation for more <a href="https://bosh.io/docs/aws-cpi.html" target="_blank">BOSH AWS configuration</a> options.
+
+| Value | Example |
+|-------|---------|
+| AWS Access Key ID | `YOURAWSACCESSKEY` |
+| AWS Secret Access Key | `secret` |
+| AWS Default Key Name | `myawsname` |
+| AWS Default Security Group | `sg-56168731` |
+| AWS Default Region | `eu-west-1` |
+
+#### Cloud-Config
+
+The term cloud-config refers to the BOSH terminology. Refer to the <a href="https://bosh.io/docs/cloud-config.html" target="_blank">cloud-config BOSH documenation</a> for more details.
+
+##### Availability Zones
+
+<a href="https://bosh.io/docs/cloud-config.html#azs" target="_blank">Setting availability zones</a> is essential for deploying highly available data services as it enables BOSH to distribute virtual machines across infrastructure availability zones.
+
+Note that for the operation of a9s Data Services, such as a9s MongoDB for PCF, at least three infrastructure availability zones need to be configured. This number is required to enable quorum based leader election during failover-procedures.
+
+| Fields | Example |
+|-------|---------|
+| Cloud properties for Availability Zones | `{availability_zone: eu-west-1a}` |
+
+##### VM Types
+
+<a href="https://bosh.io/docs/cloud-config.html#cloud-config.html" target="_blank">Set the VM types</a> to be used in later deployments determining VM sizes with regard to CPU, memory and ephemeral disk space.
+
+| Fields | Example |
+|-------|---------|
+| Cloud properties for the VM Types | `{instance_type: t2.small, availability_zone: eu-west-1a, ephemeral_disk: {size: 2048, type: gp2}}` |
+
+##### Disk Types
+
+<a href="https://bosh.io/docs/cloud-config.html#disk-types" target="_blank">Disk types</a> define the types persistent disks that can be used in later deployments. In contrast to ephermal disks, persistent disks are decoupled from the lifecycle of a virtual machine and often store data on remote storage devices.
+
+Persistent disks are used in a9s Data Services to store the actual data service data.
+
+| Fields | Example |
+|-------|---------|
+| Cloud properties for the Disk Types | `{disk_size: 5120, cloud_properties: {type: gp2,encrypted: false}}` |
+
+##### Network Settings
+
+<a href="https://bosh.io/docs/cloud-config.html#networks" target="_blank">Network settings</a> define the subnet that will be used by BOSH. All virtual machines provisioned by
+a9s BOSH for PCF will receive IP addresses from the specified subnet.
+
+This includes a CIDR of the IP range of the subnet, the IP of the subnet gateway, a single IP or a range of reserved IPs.
+IP addresses from the **reserved IP range** won't assigned by BOSH to any VM.
+
+
+| Fields | Example |
+|-------|---------|
+| Subnet IP range of this subnet for the availability zone | `10.0.29.0/24` |
+| Subnet gateway IP for the availability zone | `10.0.29.1` |
+| Reserved IPs for the availability zone | `10.0.29.1-10.0.29.11` |
+| Cloud properties for this subnet for the availability zone | `{subnet: subnet-9f7489c7}` |
+
+
+###<a id='vsphere-config'></a>VMware vSphere specific Settings
+
+The following exemplary settings demontrate the configuration of a9s BOSH for vSphere.
+
+Please refer to the official BOSH documentation for more <a href="https://bosh.io/docs/vsphere-cpi.html" target="_blank">BOSH vSphere configuration</a> options.
+
+
+| Value | Example | Explanation |
+|-------|---------|-------------|
+| The Host of the vCenter | `vcenter01.example.com` | |
+| vCenter user name | `avarteq@example.com` |  |
+| vCenter user password | `secret` |  |
+| Name of the Datacenter | `avarteq` | Name of the datacenter. |
+| VM Folder | `pcf/pcf_vms` | Relative path to a folder where the created VMs will be stored. |
+| Template Folder | `pcf/pcf_templates` | Relative path to a folder where the stemcells will be stored. |
+| Datastore pattern for Ephemeral Disks | `^(ds_emc01_iscsi_c01_pcf)$` | Pattern for selecting datastores for storing ephemeral disks and replicated stemcells. |
+| Datastore pattern for persistent Disks | `^(ds_emc01_iscsi_c01_pcf)$` | Pattern for selecting datastores for storing persistent disks.|
+| Disk Path | `pcf_disk` | Relative path to a folder where the persistent disks will be stored. |
+| Name of the clusters in vCenter | `[C01, C02, C03]` |  Expects an array of datacenters where to put the VMs |
+
+#### Cloud-Config
+
+The term cloud-config refers to the BOSH terminology. Refer to the <a href="https://bosh.io/docs/cloud-config.html" target="_blank">cloud-config BOSH documenation</a> for more details.
+
+##### Availability Zones
+
+<a href="https://bosh.io/docs/cloud-config.html#azs" target="_blank">Setting availability zones</a> is essential for deploying highly available data services as it enables BOSH to distribute virtual machines across infrastructure availability zones.
+
+Note that for the operation of a9s Data Services, such as a9s MongoDB for PCF, at least three infrastructure availability zones need to be configured. This number is required to enable quorum based leader election during failover-procedures.
+
+| Fields | Example |
+|-------|---------|
+| Cloud properties for Availability Zones | `{datacenters: [name: avarteq, clusters: [C01: {resource_pool: RP_PCF_C01}]]}` |
+
+##### VM Types
+
+<a href="https://bosh.io/docs/cloud-config.html#vm-types" target="_blank">Set the VM types</a> to be used in later deployments determining VM sizes with regard to CPU, memory and ephemeral disk space.
+
+| Fields | Example |
+|-------|---------|
+| Cloud properties for the VM Types | `{cpu: 1, ram: 2048, disk: 8192}` |
+
+##### Disk Types
+
+<a href="https://bosh.io/docs/cloud-config.html#disk-types" target="_blank">Disk types</a> define the types persistent disks that can be used in later deployments. In contrast to ephermal disks, persistent disks are decoupled from the lifecycle of a virtual machine and often store data on remote storage devices.
+
+| Fields | Example |
+|-------|---------|
+| Cloud properties for the Disk Types | `{type: thin}` |
+
+##### Network Settings
+
+<a href="https://bosh.io/docs/cloud-config.html#networks" target="_blank">Network settings</a> define the subnet that will be used by BOSH. All virtual machines provisioned by
+a9s BOSH for PCF will receive IP addresses from the specified subnet.
+
+This includes a CIDR of the IP range of the subnet, the IP of the subnet gateway, a single IP or a range of reserved IPs.
+IP addresses from the **reserved IP range** won't assigned by BOSH to any VM.
+
+| Fields | Example |
+|-------|---------|
+| Subnet IP range of this subnet for availability zone | `172.28.4.0/24` |
+| Subnet gateway IP for availability zone | `172.28.4.1` |
+| Reserved IPs for availability zone | `172.28.4.1-172.28.4.11` |
+| Cloud properties for this subnet for availability zone | `{name: 268_C01_RZ-AT-VMWARE-STAGING-1}` |
+

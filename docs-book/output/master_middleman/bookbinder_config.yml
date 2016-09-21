@@ -1,0 +1,20 @@
+---
+:archive_menu:
+  ".": 
+:production_host: hello
+:subnav_templates:
+  anynines-bosh: anynines-bosh_subnav
+:template_variables: 
+:local_repo_dir: "/home/nitrous/code/bosh/docs-partners-template"
+:workspace: !ruby/object:Pathname
+  path: "/home/nitrous/code/bosh/docs-partners-template/docs-book/output/master_middleman/source"
+:feedback_enabled: 
+:repo_link_enabled: true
+:repo_links:
+  anynines-bosh:
+    repo: docs-content
+    ref: master
+    at_path: 
+:product_info:
+  anynines-bosh: {}
+:elastic_search: false

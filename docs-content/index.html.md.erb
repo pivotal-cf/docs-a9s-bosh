@@ -1,0 +1,50 @@
+---
+title: a9s BOSH for PCF
+owner: Partners
+---
+
+**a9s BOSH for PCF sets up a dedicated BOSH 2.0**.
+
+The original motivation for a9s BOSH for PCF was to backport BOSH 2.0 for PCF versions before 1.8.
+
+a9s Data Services such as a9s MongoDB for PCF use a9s BOSH for PCF to create on-demand provisioning of
+service instances represented by dedicated virtual machines or clusters of virtual machines.
+
+<img src="../images/bosh-icon-a9s@2x_1.png" alt="a9s BOSH for PCF logo" height="215" width="215" />
+
+## <a id="snapshot"></a>Product Snapshot
+
+<dl>
+<dt>a9s BOSH for PCF Details:</dt>
+<dd><strong>Version</strong>: v0.9.0. </dd>
+<dd><strong>Release Date</strong>: September 1, 2016</dd>
+<dd><strong>Compatible Ops Manager Versions</strong>: v1.7.x</dd>
+<dd><strong>Compatible Elastic Runtime Versions</strong>: v1.6.x</dd>
+<dd><strong>vSphere support?</strong> YES</dd>
+<dd><strong>AWS support?</strong> YES</dd>
+</dl>
+
+## <a id="reqs"></a>Requirements
+
+For this service to work you will need the following product, given with its
+minimal version:
+
+* a9s Consul DNS for PCF (0.9.0)
+
+The dependency to a9s Consul DNS for PCF is necessary in order to enable the automatic configuration of the
+a9s Consul DNS as namerservers for a9s BOSH. This way all virtual machines provisioned by a9s BOSH for PCF will
+include the a9s Consul DNS (dnsmasq) servers in their list of nameservers.
+
+## <a id="feedback"></a>Feedback and Support
+
+A commercial support with a service level agreement is available for the commercial license.
+
+The entire anynines team will help your team to get started and to be successful.
+
+In case your company has specific administration policies or configuration best practises. The anynines team will be happy to incorporate them if applicable.
+
+Please provide any bugs, feature requests, or questions to svc.support@anynines.com.
+
+## <a id='license'></a>License
+
+Please contact our sales team in order to learn more about commercial licenses and support at <a href="http://data-services.anynines.com/sales" target="_blank">data-services.anynines.com/sales</a>.
