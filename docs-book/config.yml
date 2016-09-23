@@ -16,8 +16,8 @@ public_host: hello
 sections:
   - repository:
       name: docs-content
-    directory: anynines-bosh
-    subnav_template: anynines-bosh_subnav.erb
+    directory: a9s-bosh
+    subnav_template: a9s-bosh_subnav.erb
 
 template_variables:                             # optional
 
