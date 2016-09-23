@@ -5,16 +5,12 @@
 :subnav_templates:
   anynines-bosh: anynines-bosh_subnav
 :template_variables: 
-:local_repo_dir: "/home/nitrous/code/bosh/docs-partners-template"
+:local_repo_dir: "/Users/jday/workspace/docs-a9s-bosh"
 :workspace: !ruby/object:Pathname
-  path: "/home/nitrous/code/bosh/docs-partners-template/docs-book/output/master_middleman/source"
+  path: "/Users/jday/workspace/docs-a9s-bosh/docs-book/output/master_middleman/source"
 :feedback_enabled: 
-:repo_link_enabled: true
-:repo_links:
-  anynines-bosh:
-    repo: docs-content
-    ref: master
-    at_path: 
+:repo_link_enabled: false
+:repo_links: 
 :product_info:
   anynines-bosh: {}
 :elastic_search: false

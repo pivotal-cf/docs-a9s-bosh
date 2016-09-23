@@ -1,0 +1,7 @@
+AZs are essential for deploying highly available data services.
+Setting AZs allows BOSH to distribute VMs across infrastructure AZs.
+For more information, see <a href="https://bosh.io/docs/cloud-config.html#azs" target="_blank">AZs Block</a> in the BOSH documentation.
+
+<p class="note"><strong>Note</strong>: For the operation of a9s data services, such as a9s MongoDB for PCF,
+at least three infrastructure AZs need to be configured.
+Three are required to enable quorum-based leader election during failover-procedures.</p>

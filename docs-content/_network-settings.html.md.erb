@@ -1,0 +1,7 @@
+Network settings define the subnet that is used by BOSH.
+VMs provisioned by a9s BOSH for PCF receive IP addresses from the specified subnet. 
+For more information, see <a href="https://bosh.io/docs/cloud-config.html#networks" target="_blank">Networks Block</a>
+in the BOSH documentation.
+
+This includes a CIDR of the IP range of the subnet, the IP of the subnet gateway, and a single IP or a range of reserved IPs.
+IP addresses from the reserved IP range are not assigned by BOSH to any VM.
