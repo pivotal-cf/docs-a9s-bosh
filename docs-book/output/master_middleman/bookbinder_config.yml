@@ -3,7 +3,7 @@
   ".": 
 :production_host: hello
 :subnav_templates:
-  anynines-bosh: anynines-bosh_subnav
+  a9s-bosh: a9s-bosh_subnav
 :template_variables: 
 :local_repo_dir: "/Users/jday/workspace/docs-a9s-bosh"
 :workspace: !ruby/object:Pathname
@@ -12,5 +12,5 @@
 :repo_link_enabled: false
 :repo_links: 
 :product_info:
-  anynines-bosh: {}
+  a9s-bosh: {}
 :elastic_search: false
