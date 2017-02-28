@@ -1,0 +1,24 @@
+---
+title: a9s BOSH for PCF Use Case
+owner: Partners
+---
+
+<div class="note">
+Before installing a a9s service tile (e.g. a9s MongoDB for PCF), the <b>a9s BOSH for PCF</b> and <b>a9s Consul for PCF</b> tile must be installed up front.
+</div>
+
+The a9s BOSH for PCF tile is used by all a9s service tiles for on-demand provisioning and lifecycle management of dedicated virtual machines. Consequently, each service instance will run on one or more dedicated virtual machines to provide a solid isolation.
+
+Whenever a PCF end user creates a new service instance. For example by exectuing:
+
+<code>cf create-service a9s-mongodb32 mongodb-cluster-small mydb</code>,
+<code>cf create-service a9s-postgresql94 postgresql-single-small mydb</code><br/>
+etc.
+
+The corresponding a9s service tile will talk to the <b>a9s BOSH for PCF</b> tile and create a BOSH deployment in order to provision the required virutal machines and to install the required software.
+
+## Is it planned to use the PCF Ops Director for this purpose?
+
+We plan to provide the possiblity to choose between the <b>a9s BOSH for PCF</b> and the <b>PCF Operations Director</b>. But, because of the missing expierence with operating dedicated service instances using the same BOSH director as the PCF Ops Manager we focus our support on using the a9s BOSH for PCF tile for the first time.
+
+For proof of concepts this would be an usefull option because the <b>a9s BOSH for PCF<b> tile must not be installed.
