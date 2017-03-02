@@ -40,16 +40,16 @@ In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose "AWS" f
 | AWS Access Key ID | The ID of the Access key used by the a9s BOSH for PCF tile to communicate with the AWS API. Find instruction on <a href="https://aws.amazon.com/de/developers/access-keys/" target="_blank">how to create a new access key on AWS here</a>. You have to configure the same permissions as you did for the PCF Ops Manager Director (you can also use the same Access Key ID). | `YOURAWSACCESSKEY` |
 | AWS Secret Access Key | The secret access key which belongs to the AWS Access Key ID (see above). | `secret` |
 | AWS Default Key Name | The name of a keypair on AWS. Find instructions on <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank">how to create a keypair on AWS here</a> | `myawsname` |
-| AWS Default Security Group | The name of an AWS Security Group which will be assigned to each virtual machine of an a9s service instace. Ensure that the the machines in this group are allowed to communicate among each other and that the PCF Elastic Runtime can access these machine via Port 3000 and the default port of the respective service type (e.g port 5432 when the a9s PostgreSQL for PCF is installed). | `sg-56168731` |
-| AWS Default Region | The AWS Region to which the service instances should be deployed to. | `eu-west-1` |
+| AWS Default Security Group | The name of an AWS Security Group, which will be assigned to each virtual machine of an a9s service instance. Ensure that: <ul><li>the the machines in this group are allowed to communicate with each other</li><li>the PCF Elastic Runtime can access these machines via Port 3000</li><li>the PCF Elastic Runtime can access these the default port of the respective service type (e.g port 5432 for the a9s PostgreSQL for PCF tile)</li></ol> | `sg-56168731` |
+| AWS Default Region | The AWS Region to which the service instances should be deployed. | `eu-west-1` |
 
 ###<a id='iaas-setting'></a> Cloud Config Section
 
 <a href="https://bosh.io/docs/cloud-config.html" target="_blank">Cloud Config</a> is a BOSH term and refers to your infrastructure specific configuration. It encapuslates all specifics so that BOSH can use the same <a href="https://bosh.io/docs/deployment-manifest.html" target="_blank">deployment manifests</a> across different IaaS installations.
 
-To create the Cloud Config YAML you can use the a9s Cloud Config Wizard (see: <a href="https://cloud-config.anynines.com/" target="_blank">https://cloud-config.anynines.com/</a>). It provides you a graphical user interface for specifying all the configuration values to ensure you don't miss anything and that you've proper YAML structure.
+To create the Cloud Config YAML you can use the a9s Cloud Config Wizard (see: <a href="https://cloud-config.anynines.com/" target="_blank">https://cloud-config.anynines.com/</a>). It provides you a graphical user interface for the specification of all the configuration values to ensure you do not miss anything and that you have got a proper YAML structure.
 
-<div class="note">Ensure that you've specified a network with the name "<b>service-instances</b>", two disk types named "<b>small</b>" and "<b>big</b>" and two VM types named "<b>small</b>" and "<b>big</b>".</div>
+<div class="note">Ensure that you have specified a network with the name "<b>service-instances</b>", two disk types named "<b>small</b>" and "<b>big</b>" and two VM types named "<b>small</b>" and "<b>big</b>".</div>
 
 The big VM and disk types will be used for the creation of service instances when a big service plan should be used e.g. 'mongodb-cluster-big' or 'postgresql-cluster-big'. The small VM and disk types will be used for the small service plans e.g. 'mongodb-cluster-small' or 'postgresql-cluster-small'.
 
