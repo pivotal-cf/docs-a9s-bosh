@@ -3,15 +3,15 @@ title: Errands for the a9s BOSH for PCF
 owner: Partners
 ---
 
-Errands are tasks which are executed after a tile installation/update (Post-Deploy Errands) or bevore a tile gets deleted (Pre-Delete Errands). The a9s BOSH for PCF tile provides two errands which can be disabled in the "errands" sections of the tile configuration:
+Errands are tasks which are executed after a tile installation/update (Post-Deploy Errands) or before a tile gets deleted (Pre-Delete Errands). The a9s BOSH for PCF tile provides two errands which can be disabled in the "errands" sections of the tile configuration:
 
 <img src="./images/a9s-bosh-errands.png" alt="a9s BOSH for PCF errands" />
 
 ##<a id='cloud-config-updater'></a> Run Cloud Config Updater Errand
 
-The Cloud Config Updater errand uploads the Cloud Config YAML you've specified in the "Cloud Config" tab of the a9s BOSH for PCF tile to the a9s BOSH director. In case you deactivate this errands, changes in the "Cloud Config" tab would not have any effects anymore.
+The Cloud Config Updater errand uploads the Cloud Config YAML specified in the "Cloud Config" tab. In case you deactivate this errands, changes in the "Cloud Config" tab would not have any effects.
 
-If this errand is never executed with a proper Cloud Config the a9s service tiles won't be able to provision service instances.
+If this errand is never executed with a proper Cloud Config, the a9s service tiles will not be able to provision service instances.
 
 ##<a id='errands'></a> Run BOSH configurator Errand
 

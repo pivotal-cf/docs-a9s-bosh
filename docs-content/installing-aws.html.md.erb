@@ -1,5 +1,5 @@
 ---
-title: Installing and Configuring a9s BOSH for PCF on AWS
+title: How to Install and Configure a9s BOSH for PCF on AWS
 owner: Partners
 ---
 
@@ -7,7 +7,7 @@ owner: Partners
 
 Ensure that the following tile has been installed:
 
-* a9s Consul DNS for PCF v1.0.0 or later
+* a9s Consul DNS for PCF v1.0.0 or later. More information about this requirement can be found <a href="https://docs.pivotal.io/partners/a9s-consul-dns/index.html">in the a9s Consul DNS for PCF tile<a>.
 
 ##<a id='install'></a> Install and Configure a9s BOSH for PCF
 
@@ -33,7 +33,7 @@ Read this section for help completing Step 4 above.
 
 ###<a id='iaas-setting'></a> IaaS Settings Section
 
-In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose "AWS" for configuring the a9s BOSH for PCF tile to provision virtual machines on AWS. Once AWS is selected, the following configuration options must be provided:
+In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose "AWS". Once AWS is selected, the following configuration options must be provided:
 
 | Value | Description | Example |
 |-------|-------------|---------|
@@ -47,13 +47,13 @@ In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose "AWS" f
 
 <a href="https://bosh.io/docs/cloud-config.html" target="_blank">Cloud Config</a> is a BOSH term and refers to your infrastructure specific configuration. It encapuslates all specifics so that BOSH can use the same <a href="https://bosh.io/docs/deployment-manifest.html" target="_blank">deployment manifests</a> across different IaaS installations.
 
-To create the Cloud Config YAML you can use the a9s Cloud Config Wizard (see: <a href="https://cloud-config.anynines.com/" target="_blank">https://cloud-config.anynines.com/</a>). It provides you a graphical user interface for the specification of all the configuration values to ensure you do not miss anything and that you have got a proper YAML structure.
+To create the Cloud Config YAML you can use the a9s Cloud Config Wizard (see: <a href="https://cloud-config.anynines.com/" target="_blank">https://cloud-config.anynines.com/</a>). It provides you a graphical user interface for the specification of all configuration values to ensure you do not miss anything and that you have a proper YAML structure.
 
 <div class="note">Ensure that you have specified a network with the name "<b>service-instances</b>", two disk types named "<b>small</b>" and "<b>big</b>" and two VM types named "<b>small</b>" and "<b>big</b>".</div>
 
 The big VM and disk types will be used for the creation of service instances when a big service plan should be used e.g. 'mongodb-cluster-big' or 'postgresql-cluster-big'. The small VM and disk types will be used for the small service plans e.g. 'mongodb-cluster-small' or 'postgresql-cluster-small'.
 
-<div class="note">To reduce the risk that a data service instance experiences a split brain situation ensure you've configured three availalbity zones!</div>
+<div class="note">To reduce the risk that a data service instance experiences a split brain situation, ensure you have configured three availalbity zones!</div>
 
 <img src="./images/a9s-bosh-tile-cloud-config.png" alt="a9s BOSH for PCF cloud config section" />
 
