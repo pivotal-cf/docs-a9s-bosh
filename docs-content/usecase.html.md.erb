@@ -3,13 +3,13 @@ title: a9s BOSH for PCF Use Case
 owner: Partners
 ---
 
-<div class="note">
+<div class="note"><strong>Note</strong>: 
 Before installing an a9s service tile (e.g. a9s MongoDB for PCF), the <b>a9s BOSH for PCF</b> and <b>a9s Consul for PCF</b> tile must be installed.
 </div>
 
-The a9s BOSH for PCF tile is used by all a9s service tiles for on-demand provisioning and lifecycle management of dedicated virtual machines. Consequently, each service instance will run on one or more dedicated virtual machines to provide a solid isolation.
+The a9s BOSH for Pivotal Cloud Foundry (PCF) tile is used by all a9s service tiles for on-demand provisioning and lifecycle management of dedicated virtual machines. Consequently, each service instance will run on one or more dedicated virtual machines to provide a solid isolation.
 
-Whenever a PCF end user creates a new service instance, for example by exectuing:
+Whenever a PCF end user creates a new service instance, for example by executing:
 
 <code>cf create-service a9s-mongodb32 mongodb-cluster-small mydb</code>,
 <code>cf create-service a9s-postgresql94 postgresql-single-small mydb</code><br/>
@@ -17,8 +17,8 @@ etc.
 
 the corresponding a9s service tile will talk to the <b>a9s BOSH for PCF</b> tile and create a BOSH deployment in order to provision virtual machines and to install the required software packages.
 
-## Why we decided not to use the PCF Ops Director for this purpose
+## Why we decided not to use the PCF Ops Manager Director for this purpose
 
-We want to provide the possiblity to choose between the <b>a9s BOSH for PCF</b> and the <b>PCF Operations Director</b> in the future. For proof of concepts this would be a useful option, because the <b>a9s BOSH for PCF</b> tile does not need to be installed.
+We want to provide the possiblity to choose between the <b>a9s BOSH for PCF</b> and the <b>PCF Op Manager Director</b> in the future. For proof of concepts this would be a useful option, because the <b>a9s BOSH for PCF</b> tile does not need to be installed.
 
-Due to the missing expierence with using one BOSH director only for the regular PCF tile deployments as well as for the service instance deployments, we focus our support on using the a9s BOSH for PCF tile for now.
+Due to the missing experience with using one BOSH director only for the regular PCF tile deployments as well as for the service instance deployments, we focus our support on using the a9s BOSH for PCF tile for now.

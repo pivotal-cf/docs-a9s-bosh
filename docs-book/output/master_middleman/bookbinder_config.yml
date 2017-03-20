@@ -5,9 +5,9 @@
 :subnav_templates:
   a9s-bosh: a9s-bosh_subnav
 :template_variables: 
-:local_repo_dir: "/private/tmp/docs-a9s-bosh"
+:local_repo_dir: "/Users/ljarzynski/workspace/docs-a9s-bosh"
 :workspace: !ruby/object:Pathname
-  path: "/private/tmp/docs-a9s-bosh/docs-book/output/master_middleman/source"
+  path: "/Users/ljarzynski/workspace/docs-a9s-bosh/docs-book/output/master_middleman/source"
 :feedback_enabled: 
 :repo_link_enabled: false
 :repo_links: 

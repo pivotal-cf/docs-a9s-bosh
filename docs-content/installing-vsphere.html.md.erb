@@ -7,7 +7,7 @@ owner: Partners
 
 Ensure that the following tile has been installed:
 
-* a9s Consul DNS for PCF v1.0.0 or later. More information about this requirement can be found <a href="https://docs.pivotal.io/partners/a9s-consul-dns/index.html">in the a9s Consul DNS for PCF tile<a>.
+* a9s Consul DNS for Pivotal Cloud Foundry (PCF) v1.0.0 or later. More information about this requirement can be found <a href="https://docs.pivotal.io/partners/a9s-consul-dns/index.html">in the a9s Consul DNS for PCF tile<a>.
 
 ##<a id='install'></a> Install and Configure a9s BOSH for PCF
 
@@ -33,7 +33,7 @@ Read this section for help to complete Step 4 above.
 
 ###<a id='iaas-setting'></a> IaaS Settings Section
 
-In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose "vShpere". Once vShpere is selected, the following configuration options must be provided:
+In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose **vShpere**. Once vSphere is selected, the following configuration options must be provided:
 
 | Value | Description | Example |
 |-------|-------------|---------|
@@ -41,24 +41,24 @@ In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose "vShper
 |vCenter Username| You have to provide a user with the same permissions as the user you have configured in the PCF Ops Manager Director (you can also use the same user). A closer description on the required user permissions can be found <a href="https://github.com/cloudfoundry-incubator/bosh-vsphere-cpi-release/blob/master/docs/required_vcenter_privileges.md" target="_blank">here</a>.||
 |vCenter Password| The password belonging to the user provided above.||
 |Datacenter Name| The name of the datacenter in vSphere to which the a9s service instances should be deployed.||
-|VM Folder| "the name of the folder created to hold VMs. ... Folders will be automatically created under the chosen datacenter." see <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information.|`a9s_vms`|
-|Template Folder| "The name of the folder created to hold stemcells. Folders will be automatically created under the chosen datacenter." see <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information. |`a9s_templates`|
-|Datastore pattern for persistent Disks|"a regex matching the names of potential datastores the Director will use for storing VMs and associated persistent disks." see <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information.|<code>^(s1&#448;s2&#448;s3)$</code>|
-|Datastore pattern for Ephemeral Disks|Often the same as "Datastore pattern for persistent Disks"|<code>^(s1&#448;s2&#448;s3)$</code>|
-|Disk Path|"The name of the VMs folder. Disk folder will be automatically created in the chosen datastore." see <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information. |`a9s_disk`|
-|Name of the clusters in vCenter| A JSON formatted array with the names of the vSphere clusters that should be used to provision vm (service instances). Each cluster must exist in the chosen datacenter. |`[C01,C02,C03]` |
+|VM Folder| The name of the folder created to hold VMs. ... Folders will be automatically created under the chosen datacenter. See <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information.|`a9s_vms`|
+|Template Folder| The name of the folder created to hold stemcells. Folders will be automatically created under the chosen datacenter. See <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information. |`a9s_templates`|
+|Datastore pattern for persistent Disks|A regex matching the names of potential datastores the Director will use for storing VMs and associated persistent disks. See <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information.|<code>^(s1&#448;s2&#448;s3)$</code>|
+|Datastore pattern for Ephemeral Disks|Often the same as <em>Datastore pattern for persistent Disks</em>|<code>^(s1&#448;s2&#448;s3)$</code>|
+|Disk Path|The name of the VMs folder. Disk folder will be automatically created in the chosen datastore. See <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information. |`a9s_disk`|
+|Name of the clusters in vCenter| A JSON formatted array with the names of the vSphere clusters that should be used to provision VMs for service instances. Each cluster must exist in the chosen datacenter. |`[C01,C02,C03]` |
 
 ###<a id='iaas-setting'></a> Cloud Config Section
 
 <a href="https://bosh.io/docs/cloud-config.html" target="_blank">Cloud Config</a> is a BOSH term and refers to your infrastructure specific configuration. It encapuslates all specifics so that BOSH can use the same <a href="https://bosh.io/docs/deployment-manifest.html" target="_blank">deployment manifests</a> across different IaaS installations.
 
-To create the Cloud Config YAML you can use the a9s Cloud Config Wizard (see: <a href="https://cloud-config.anynines.com/" target="_blank">https://cloud-config.anynines.com/</a>). It provides you a graphical user interface for the specification of all configuration values to ensure you don't miss anything and that you have a proper YAML structure.
+To create the Cloud Config YAML, you can use the a9s Cloud Config Wizard (see: <a href="https://cloud-config.anynines.com/" target="_blank">https://cloud-config.anynines.com/</a>). It provides you a graphical user interface for the specification of all configuration values to ensure you don't miss anything and that you have a proper YAML structure.
 
-<div class="note">Ensure that you have specified a network with the name "<b>service-instances</b>", two disk types named "<b>small</b>" and "<b>big</b>" and two VM types named "<b>small</b>" and "<b>big</b>".</div>
+<div class="note"><strong>Note</strong>: Ensure that you have specified a network with the name <code>service-instances</code>, two disk types named <code>small</code> and <code>big</code> and two VM types named <code>small</code> and <code>big</code>.</div>
 
-The big VM and disk types will be used for the creation of service instances when a big service plan should be used e.g. 'mongodb-cluster-big' or 'postgresql-cluster-big'. The small VM and disk types will be used for the small service plans e.g. 'mongodb-cluster-small' or 'postgresql-cluster-small'.
+The `big` VM and disk types will be used for the creation of service instances when a big service plan should be used, such as `mongodb-cluster-big` or `postgresql-cluster-big`. The small VM and disk types will be used for the small service plans, such as `mongodb-cluster-small` or `postgresql-cluster-small`.
 
-<div class="note">To reduce the risk that a data service instance experiences a split brain situation, ensure you have configured three availalbity zones!</div>
+<div class="note"><strong>Note</strong>: To reduce the risk that a data service instance experiences a split brain situation, ensure you have configured three availability zones.</div>
 
 ###<a id='errands'></a> Errands Section
 

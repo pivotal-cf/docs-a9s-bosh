@@ -7,7 +7,7 @@ owner: Partners
 
 Ensure that the following tile has been installed:
 
-* a9s Consul DNS for PCF v1.0.0 or later. More information about this requirement can be found <a href="https://docs.pivotal.io/partners/a9s-consul-dns/index.html">in the a9s Consul DNS for PCF tile<a>.
+* a9s Consul DNS for Pivotal Cloud Foundry (PCF) v1.0.0 or later. More information about this requirement can be found <a href="https://docs.pivotal.io/partners/a9s-consul-dns/index.html">in the a9s Consul DNS for PCF tile<a>.
 
 ##<a id='install'></a> Install and Configure a9s BOSH for PCF
 
@@ -33,30 +33,30 @@ Read this section for help to complete Step 4 above.
 
 ###<a id='iaas-setting'></a> IaaS Settings Section
 
-In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose "OpenStack". Once OpenStack is selected, the following configuration options must be provided:
+In the **IaaS Settings** of the a9s BOSH for PCF tile, you have to choose **OpenStack**. Once OpenStack is selected, the following configuration options must be provided:
 
-| Value | Description | Example |
-|-------|-------------|---------|
-| OpenStack Auth URL | The OpenStack Identity API endpoint || |
-| OpenStack Region | The region of your OpenStack setup |||
-| OpenStack Tenant | The OpenStack project name | ||
-| OpenStack Username | A user with access rights to the choosen project |||
-| OpenStack API Key | The API password |||
-| OpenStack Default Key Name | The name of an existing key pair. Find more information <a href="https://bosh.io/docs/init-openstack.html#keypair" target="_blank">here</a> on how to create one. |||
-| OpenStack Default Security Group | The name of an existing security group. ||
+| Value | Description |
+|-------|-------------|
+| OpenStack Auth URL | The OpenStack Identity API endpoint |
+| OpenStack Region | The region of your OpenStack setup |
+| OpenStack Tenant | The OpenStack project name |
+| OpenStack Username | A user with access rights to the chosen project |
+| OpenStack API Key | The API password |
+| OpenStack Default Key Name | The name of an existing key pair. Find more information <a href="https://bosh.io/docs/init-openstack.html#keypair" target="_blank">here</a> on how to create one. |
+| OpenStack Default Security Group | The name of an existing security group. |
 
 ###<a id='iaas-setting'></a> Cloud Config Section
 
 <a href="https://bosh.io/docs/cloud-config.html" target="_blank">Cloud Config</a> is a BOSH term and refers to your infrastructure specific configuration. It encapuslates all specifics so that BOSH can use the same <a href="https://bosh.io/docs/deployment-manifest.html" target="_blank">deployment manifests</a> across different IaaS installations.
 
-To create the Cloud Config YAML you can use the a9s Cloud Config Wizard (see: <a href="https://cloud-config.anynines.com/" target="_blank">https://cloud-config.anynines.com/</a>). It provides you a graphical user interface for the specification of all configuration values to ensure you don't miss anything and that you have a proper YAML structure.
+To create the Cloud Config YAML, you can use the a9s Cloud Config Wizard (see: <a href="https://cloud-config.anynines.com/" target="_blank">https://cloud-config.anynines.com/</a>). It provides you a graphical user interface for the specification of all configuration values to ensure you don't miss anything and that you have a proper YAML structure.
 
-<div class="note">Ensure that you have specified a network with the name "<b>service-instances</b>", two disk types named "<b>small</b>" and "<b>big</b>" and two VM types named "<b>small</b>" and "<b>big</b>".</div>
+<div class="note"><strong>Note</strong>: Ensure that you have specified a network with the name <code>service-instances</code>, two disk types named <code>small</code> and <code>big</code> and two VM types named <code>small</code> and <code>big</code>.</div>
 
-The big VM and disk types will be used for the creation of service instances when a big service plan should be used e.g. 'mongodb-cluster-big' or 'postgresql-cluster-big'. The small VM and disk types will be used for the small service plans e.g. 'mongodb-cluster-small' or 'postgresql-cluster-small'.
+The `big` VM and disk types will be used for the creation of service instances when a big service plan should be used, such as `mongodb-cluster-big` or `postgresql-cluster-big`. The small VM and disk types will be used for the small service plans, such as `mongodb-cluster-small` or `postgresql-cluster-small`.
 
-<div class="note">To reduce the risk that a data service instance experiences a split brain situation, ensure you have configured three availalbity zones!</div>
+<div class="note"><strong>Note</strong>: To reduce the risk that a data service instance experiences a split brain situation, ensure you have configured three availability zones.</div>
 
 ###<a id='errands'></a> Errands Section
 
-Find a description about the errands of the a9s BOSH for tile <a href="errands.html">here</a>.
+Find a description about the errands of the a9s BOSH for PCF tile <a href="errands.html">here</a>.
