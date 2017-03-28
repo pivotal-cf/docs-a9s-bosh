@@ -37,13 +37,16 @@ In the **IaaS Settings** of the a9s BOSH for PCF tile, you have to choose **Open
 
 | Value | Description |
 |-------|-------------|
-| OpenStack Auth URL | The OpenStack Identity API endpoint |
-| OpenStack Region | The region of your OpenStack setup |
-| OpenStack Tenant | The OpenStack project name |
+| OpenStack Auth URL | URL to the Openstack Identity Endpoint |
+| OpenStack Domain | (Optional) Needed for Keystone V3 Authentication. |
 | OpenStack Username | A user with access rights to the chosen project |
 | OpenStack API Key | The API password |
-| OpenStack Default Key Name | The name of an existing key pair. Find more information <a href="https://bosh.io/docs/init-openstack.html#keypair" target="_blank">here</a> on how to create one. |
+| OpenStack Project/ Tenant | The OpenStack project name |
+| OpenStack Region | The region of your OpenStack setup |
+| Ignore Server Availability Zone | Ignores the server availability zones |
 | OpenStack Default Security Group | The name of an existing security group. |
+| OpenStack Default Key Name | The name of an existing key pair. Find more information <a href="https://bosh.io/docs/init-openstack.html#keypair" target="_blank">here</a> on how to create one. |
+| Custom CA certificates for OpenStack API | (Optional) If, in your OpenStack Dashboard, you have configured API SSL termination, enter your API SSL Certificates. |
 
 ###<a id='iaas-setting'></a> Cloud Config Section
 
