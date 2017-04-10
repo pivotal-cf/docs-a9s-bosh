@@ -43,7 +43,7 @@ In the **IaaS Settings** of the a9s BOSH for PCF tile, you have to choose **AWS*
 | AWS Default Security Group | The name of an AWS Security Group, which will be assigned to each virtual machine of an a9s service instance. Ensure that: <ul><li>The machines in this group are allowed to communicate with each other</li><li>PCF Elastic Runtime can access these machines via Port 3000</li><li>PCF Elastic Runtime can access these the default port of the respective service type (e.g port 5432 for the a9s PostgreSQL for PCF tile)</li></ol> | `sg-56168731` |
 | AWS Default Region | The AWS Region to which the service instances should be deployed. | `eu-west-1` |
 
-###<a id='iaas-setting'></a> Cloud Config Section
+###<a id='cc'></a> Cloud Config Section
 
 <a href="https://bosh.io/docs/cloud-config.html" target="_blank">Cloud Config</a> is a BOSH term and refers to your infrastructure specific configuration. It encapuslates all specifics so that BOSH can use the same <a href="https://bosh.io/docs/deployment-manifest.html" target="_blank">deployment manifests</a> across different IaaS installations.
 

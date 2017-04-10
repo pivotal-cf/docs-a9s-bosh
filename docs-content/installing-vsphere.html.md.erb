@@ -48,7 +48,7 @@ In the **IaaS Settings** of the a9s BOSH for PCF tile you have to choose **vShpe
 |Disk Path|The name of the VMs folder. Disk folder will be automatically created in the chosen datastore. See <a href="https://bosh.io/docs/init-vsphere.html#prepare" target="_blank">https://bosh.io/docs/init-vsphere.html</a> for more information. |`a9s_disk`|
 |Name of the clusters in vCenter| A JSON formatted array with the names of the vSphere clusters that should be used to provision VMs for service instances. Each cluster must exist in the chosen datacenter. |`[C01,C02,C03]` |
 
-###<a id='iaas-setting'></a> Cloud Config Section
+###<a id='cc'></a> Cloud Config Section
 
 <a href="https://bosh.io/docs/cloud-config.html" target="_blank">Cloud Config</a> is a BOSH term and refers to your infrastructure specific configuration. It encapuslates all specifics so that BOSH can use the same <a href="https://bosh.io/docs/deployment-manifest.html" target="_blank">deployment manifests</a> across different IaaS installations.
 
