@@ -13,6 +13,10 @@ The Cloud Config Updater errand uploads the Cloud Config YAML specified in the *
 
 If this errand is never executed with a proper Cloud Config, the a9s service tiles will not be able to provision service instances.
 
-##<a id='errands'></a> Run BOSH Configurator Errand
+##<a id='bosh-configurator'></a> Run BOSH Configurator Errand
 
 The BOSH configurator errand uploads the required stemcells to the a9s BOSH director.
+
+##<a id='bosh-cleaner'></a> Run BOSH Cleaner Errand
+
+When the a9s BOSH for PCF tile will be uninstalled, this errands takes care no deployment, orphaned disk or any other artefact remains. 
