@@ -3,7 +3,7 @@ title: a9s BOSH for PCF Use Case
 owner: Partners
 ---
 
-<div class="note"><strong>Note</strong>: 
+<div class="note"><strong>Note</strong>:
 Before installing an a9s service tile (e.g. a9s MongoDB for PCF), the <b>a9s BOSH for PCF</b> and <b>a9s Consul for PCF</b> tile must be installed.
 </div>
 
@@ -17,8 +17,50 @@ etc.
 
 the corresponding a9s service tile will talk to the <b>a9s BOSH for PCF</b> tile and create a BOSH deployment in order to provision virtual machines and to install the required software packages.
 
-## Why we decided not to use the PCF Ops Manager Director for this purpose
+<img src="./images/a9s-bosh-for-pcf-architecture.png" alt="a9s BOSH for PCF Architecture" />
 
-We want to provide the possiblity to choose between the <b>a9s BOSH for PCF</b> and the <b>PCF Op Manager Director</b> in the future. For proof of concepts this would be a useful option, because the <b>a9s BOSH for PCF</b> tile does not need to be installed.
+## Advantages of Using a9s BOSH for PCF
 
-Due to the missing experience with using one BOSH director only for the regular PCF tile deployments as well as for the service instance deployments, we focus our support on using the a9s BOSH for PCF tile for now.
+Even though only a few services tiles are uploaded in your <b>PCF Ops Manager Director</b>,
+those ones can spawn a large number of service instances depending on your users' needs.
+This could lead to a series of problems:
+
+* __Bottleneck:__ the <b>PCF Ops Manager Director</b> might take too long to
+execute a task for the Data Service because it is handling tasks from thousands
+of service instances.
+
+* __Upgrade Side Effects:__ if something were to go wrong when upgrading the <b>PCF
+  Ops Manager Director</b> the service instances could be affected.
+
+* __Limited Configuration:__ the <b>Ops Manager Director</b> only allows a limited
+range of configuration options. The <b>a9s Bosh Director for PCF</b> extend those
+options to provide more fine-grained configuration.
+
+* __Confusing Environment:__ the instances created by the service share the same space
+as the tiles, however the <b>Ops Manager</b> does not reflect this properly.
+
+With <b>a9s BOSH for PCF</b>, it is possible to provide a complete different target
+environment for the service instances.
+
+This approach has the main advantage of decoupling the lifecycle management of
+the run time from the service instances providing a more robust and specialized
+environment for the services.
+
+With <b>a9s BOSH for PCF</b> it is possible to have:
+
+* __Separated Resources:__ service instance tasks are executed by the <b>a9s BOSH
+for PCF</b> while the <b>PCF Ops Manager Director</b> handles tasks regarding the
+service.
+
+* __Safe Upgrades:__ <b>Ops Manger</b> upgrades does not affect <b>a9s BOSH for PCF</b>,
+so it can be done safely.
+
+* __Fine-Grained Configuration:__ freedom to provide a different configuration to
+handle specially the service instances. This way applying changes to <b>PCF Ops
+Manager Director</b> can be done without the possibility to lose data.
+
+* __Clear Separation:__ the service instances are always in <b>a9s BOSH for PCF</b>
+and the services are always in <b>PCF Ops Manager Director</b>, there isn't any
+hidden or mixed releases, deployments, instances, etc.
+
+* __IaaS Portability:__ a complete different IaaS to provide service instances.
