@@ -21,18 +21,18 @@ the corresponding a9s service tile will talk to the <b>a9s BOSH for PCF</b> tile
 
 ## Advantages of Using a9s BOSH for PCF
 
-Even though only a few services tiles are uploaded in your <b>PCF Ops Manager Director</b>,
+Even though only a few services tiles are uploaded in your <b>BOSH Director</b>,
 they can spawn many service instances depending on your users' needs.
 This can lead to a series of problems:
 
-* __Bottleneck:__ The <b>PCF Ops Manager Director</b> might take too long to
+* __Bottleneck:__ The <b>BOSH Director</b> might take too long to
 execute a task for the Data Service because it is handling tasks from thousands
 of service instances.
 
 * __Upgrade Side Effects:__ If something goes wrong when upgrading the <b>PCF
   Ops Manager Director</b>, the service instances could be affected.
 
-* __Limited Configuration:__ The <b>Ops Manager Director</b> only allows a limited
+* __Limited Configuration:__ The <b>BOSH Director</b> only allows a limited
 range of configuration options. The <b>a9s Bosh Director for PCF</b> extends those
 options to provide more fine-grained configuration.
 
@@ -49,7 +49,7 @@ environment for the services.
 With <b>a9s BOSH for PCF</b>, it is possible to have:
 
 * __Separated Resources:__ Service instance tasks are executed by the <b>a9s BOSH
-for PCF</b> while the <b>PCF Ops Manager Director</b> handles tasks regarding the
+for PCF</b> while the <b>BOSH Director</b> handles tasks regarding the
 service.
 
 * __Safe Upgrades:__ <b>Ops Manager</b> upgrades do not affect <b>a9s BOSH for PCF</b>,
@@ -60,7 +60,7 @@ handle specially the service instances. This way, applying changes to <b>PCF Ops
 Manager Director</b> can be done without data loss.
 
 * __Clear Separation:__ The service instances are always in <b>a9s BOSH for PCF</b>
-and the services are always in <b>PCF Ops Manager Director</b>. There aren't any
+and the services are always in the <b>BOSH Director</b>. There aren't any
 hidden or mixed releases, deployments, instances, etc.
 
 * __IaaS Portability:__ A completely different IaaS to provide service instances.
